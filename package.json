@@ -1,0 +1,16 @@
+{
+  "name": "silico.bio",
+  "version": "1.0.0",
+  "description": "Silico Biosciences: AI-Guided Therapeutic Design and Testing",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "deploy": "gh-pages -d dist"
+  },
+  "author": "Tuple, LLC",
+  "license": "",
+  "dependencies": {
+    "gh-pages": "^6.1.0",
+    "three": "^0.158.0"
+  }
+}
