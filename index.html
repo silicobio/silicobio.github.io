@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<title>Silico Biosciences</title>
+		<meta charset="utf-8">
+		<meta name="description" content="Silico Biosciences: AI-Guided Therapeutic Design and Testing">
+		<meta name="keywords" content="Drug Discovery, Antibody, AI, Cloud, Pharmaceuticals, Machine Learning, Artificial Intelligence, Bioinformatics, Genomics, Research, Distributed Computing">
+		<meta name="author" content="Tuple, LLC">
+		<meta name="viewport" content="width=device-width, user-scalable=no, minimum-scale=1.0, maximum-scale=1.0">
+		<link type="text/css" rel="stylesheet" href="main.css">
+		<style>@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap');</style>
+		<style>@import url('https://fonts.googleapis.com/css2?family=Righteous&display=swap');</style>
+        <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+		<link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+		<link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
+		<link rel="manifest" href="/site.webmanifest">
+		<link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5">
+		<meta name="msapplication-TileColor" content="#000000">
+		<meta name="theme-color" content="#ffffff">
+	</head>
+
+	<body>
+
+		<div class="center">
+			<h1>Silico Biosciences</h1>
+			<p>AI-Guided Therapeutic Design and Testing</p>
+		</div>
+
+		<div id="info">
+			A <a href="https://tuple.xyz" target="_blank" rel="noopener">
+				<span style="font-family:Righteous,sans-serif">&ltTuple&gt</span>
+			</a> venture. | More coming soon...
+		</div>
+
+		<script type="importmap">
+            {
+                "imports": {
+                  "three": "https://unpkg.com/three/build/three.module.js",
+                  "three/addons/": "https://unpkg.com/three/examples/jsm/"
+                }
+            }
+		</script>
+
+		<script type="module">
+
+			import * as THREE from 'three';
+
+			import { AsciiEffect } from 'three/addons/effects/AsciiEffect.js';
+			import { TrackballControls } from 'three/addons/controls/TrackballControls.js';
+            import { STLLoader } from 'three/addons/loaders/STLLoader.js';
+
+			let camera, controls, scene, renderer, effect;
+			let sphere, plane;
+			const start = Date.now();
+
+			init();
+			animate();
+
+			function init() {
+
+				camera = new THREE.PerspectiveCamera( 70, window.innerWidth / window.innerHeight, 1, 1000 );
+				camera.position.y = 150;
+				camera.position.z = 500;
+
+				scene = new THREE.Scene();
+				scene.background = new THREE.Color( 0, 0, 0 );
+
+				const pointLight1 = new THREE.PointLight( 0xffffff, 3, 0, 0 );
+				pointLight1.position.set( 500, 500, 500 );
+				scene.add( pointLight1 );
+
+				const pointLight2 = new THREE.PointLight( 0xffffff, 1, 0, 0 );
+				pointLight2.position.set( - 500, - 500, - 500 );
+				scene.add( pointLight2 );
+
+				// Load in STL File and show it in the scene
+				const loader = new STLLoader();
+				loader.load( 'pembro_fv.stl', function ( geometry ) {
+
+					const material = new THREE.MeshPhongMaterial( { color: 0xffffff, specular: 0x111111, shininess: 200, flatShading: true } );
+					const protein = new THREE.Mesh( geometry, material );
+					protein.position.set( 100, -100, 0 );
+					protein.rotation.set( 0, - Math.PI / 2, 0 );
+					protein.scale.set( 7, 7, 7 );
+					// protein.castShadow = true;
+					// protein.receiveShadow = true;
+					scene.add( protein );
+				} );
+
+				renderer = new THREE.WebGLRenderer();
+				renderer.setSize( window.innerWidth, window.innerHeight );
+
+				// effect = new AsciiEffect( renderer, ' .:-+*=%@#', { invert: true } );
+				effect = new AsciiEffect( renderer, ' .:-+*ARNDCQEGHILKMFPSTWYV', { invert: true } );
+				effect.setSize( window.innerWidth, window.innerHeight );
+				effect.domElement.style.color = 'white';
+				effect.domElement.style.backgroundColor = 'black';
+				document.body.appendChild( effect.domElement );
+				controls = new TrackballControls( camera, effect.domElement );
+				window.addEventListener( 'resize', onWindowResize );
+			}
+
+			function onWindowResize() {
+				camera.aspect = window.innerWidth / window.innerHeight;
+				camera.updateProjectionMatrix();
+				renderer.setSize( window.innerWidth, window.innerHeight );
+				effect.setSize( window.innerWidth, window.innerHeight );
+			}
+
+			// Animates the scene.
+			function animate() {
+				requestAnimationFrame( animate );
+				render();
+			}
+
+			function render() {
+				const timer = Date.now() - start;
+
+				// protein.position.y = Math.abs( Math.sin( timer * 0.002 ) ) * 150;
+				// protein.rotation.x = timer * 0.0003;
+				// protein.rotation.z = timer * 0.0002;
+
+				controls.update();
+				effect.render( scene, camera );
+			}
+
+		</script>
+	</body>
+</html>
