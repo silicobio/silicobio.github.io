@@ -8,6 +8,11 @@ body {
 	overscroll-behavior: none;
 }
 
+h1 {
+	/* font-size: 32px; */
+	line-height: 40px;
+}
+
 a {
 	/* color: #ff6f61; */
     color: #fff;
