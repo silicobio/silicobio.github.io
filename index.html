@@ -32,11 +32,21 @@
 			</a> venture. | More coming soon...
 		</div>
 
+		<!-- <script type="importmap">
+            {
+                "imports": {
+                  "three": "https://unpkg.com/three@0.158.0/build/three.module.min.js",
+                  "three/addons/": "https://unpkg.com/three@0.158.0/examples/jsm/"
+                }
+            }
+		</script> -->
 		<script type="importmap">
             {
                 "imports": {
-                  "three": "https://unpkg.com/three/build/three.module.js",
-                  "three/addons/": "https://unpkg.com/three/examples/jsm/"
+				  "three": "https://unpkg.com/three@0.158.0/build/three.module.min.js",
+                  "three/ascii": "https://unpkg.com/three@0.158.0/examples/jsm/effects/AsciiEffect.js",
+				  "three/trackballcontrols": "https://unpkg.com/three@0.158.0/examples/jsm/controls/TrackballControls.js",
+				  "three/stlloader": "https://unpkg.com/three@0.158.0/examples/jsm/loaders/STLLoader.js"
                 }
             }
 		</script>
@@ -45,9 +55,12 @@
 
 			import * as THREE from 'three';
 
-			import { AsciiEffect } from 'three/addons/effects/AsciiEffect.js';
-			import { TrackballControls } from 'three/addons/controls/TrackballControls.js';
-            import { STLLoader } from 'three/addons/loaders/STLLoader.js';
+			// import { AsciiEffect } from 'three/addons/effects/AsciiEffect.js';
+			// import { TrackballControls } from 'three/addons/controls/TrackballControls.js';
+            // import { STLLoader } from 'three/addons/loaders/STLLoader.js';
+			import { AsciiEffect } from 'three/ascii';
+			import { TrackballControls } from 'three/trackballcontrols';
+            import { STLLoader } from 'three/stlloader';
 
 			let camera, controls, scene, renderer, effect;
 			let sphere, plane;
