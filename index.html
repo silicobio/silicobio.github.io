@@ -32,14 +32,6 @@
 			</a> venture. | More coming soon...
 		</div>
 
-		<!-- <script type="importmap">
-            {
-                "imports": {
-                  "three": "https://unpkg.com/three@0.158.0/build/three.module.min.js",
-                  "three/addons/": "https://unpkg.com/three@0.158.0/examples/jsm/"
-                }
-            }
-		</script> -->
 		<script type="importmap">
             {
                 "imports": {
@@ -53,11 +45,12 @@
 
 		<script type="module">
 
-			import * as THREE from 'three';
+			// import * as THREE from './js/three/three.module.js';
+			// import { AsciiEffect } from './js/three/AsciiEffect.js';
+			// import { TrackballControls } from './js/three/TrackballControls.js';
+			// import { STLLoader } from './js/three/STLLoader.js';
 
-			// import { AsciiEffect } from 'three/addons/effects/AsciiEffect.js';
-			// import { TrackballControls } from 'three/addons/controls/TrackballControls.js';
-            // import { STLLoader } from 'three/addons/loaders/STLLoader.js';
+			import * as THREE from 'three';
 			import { AsciiEffect } from 'three/ascii';
 			import { TrackballControls } from 'three/trackballcontrols';
             import { STLLoader } from 'three/stlloader';
@@ -88,7 +81,8 @@
 
 				// Load in STL File and show it in the scene
 				const loader = new STLLoader();
-				loader.load( 'pembro_fv.stl', function ( geometry ) {
+				// loader.load( 'pembro_fv.stl', function ( geometry ) {
+				loader.load( 'https://raw.githubusercontent.com/silicobio/silicobio.github.io/main/pembro_fv.stl', function ( geometry ) {
 
 					const material = new THREE.MeshPhongMaterial( { color: 0xffffff, specular: 0x111111, shininess: 200, flatShading: true } );
 					const protein = new THREE.Mesh( geometry, material );
